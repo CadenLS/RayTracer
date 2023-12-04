@@ -2,6 +2,8 @@
 
 #include <cstdlib>  // For rand and srand
 #include <algorithm> // For std::swap
+#include "glm/glm.hpp"
+#include "glm/gtx/norm.hpp"
 
 namespace ray
 {
@@ -21,5 +23,22 @@ namespace ray
             std::swap(min, max);
         }
         return min + (max - min) * random01();
+    }
+
+    inline glm::vec3 random(const glm::vec3& min, const glm::vec3& max) {
+        return glm::vec3(
+            random(min.x, max.x),
+            random(min.y, max.y),
+            random(min.z, max.z)
+        );
+    }
+
+    // Generate a random vector in the unit sphere
+    inline glm::vec3 randomInUnitSphere() {
+        glm::vec3 p;
+        do {
+            p = glm::vec3{ random(-1, 1), random(-1, 1), random(-1, 1) };
+        } while (glm::length2(p) >= 1.0f);
+        return p;
     }
 }
