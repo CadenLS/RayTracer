@@ -21,8 +21,7 @@ namespace ray
 		void AddObject(std::unique_ptr<Object> object) { m_objects.push_back(std::move(object)); }
 
 		void SetCamera(std::shared_ptr<Camera> camera) { m_camera = camera; }
-		void InitScene01(Scene& scene, const Canvas& canvas);
-		void InitScene02(Scene& scene, const Canvas& canvas);
+
 
 	private:
 		std::shared_ptr<Camera> m_camera;
